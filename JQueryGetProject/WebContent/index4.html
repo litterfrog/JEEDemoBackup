@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>test get json</title>
+<script type="text/javascript" src="scripts/jquery-3.0.0.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$("input:eq(0)").click(function(){
+			$.getScript("scripts/my.js",function(){
+				f();
+			})
+		});
+		$("input:eq(1)").click(function(){
+			$.getJSON("scripts/myJSON.json",function(data){
+				var name=data.name;
+				var age=data.age;
+				$("<p>名字:"+name+",年龄:"+age+"</p>").appendTo($("#content"));
+			})
+		});
+		$("input:eq(2)").click(function(){
+			$.getJSON("http://localhost:8080/JQueryGetProject/GetJSONServlet",function(data){
+		    	 var students=data.students;
+		    	 var res="<ul>\n";
+		    	 for(var i=0;i<students.length;i++){
+		    		 var student=students[i];
+		    		 res+="<li>"+student.name+"--"+student.age+"</li><br/>";
+		    	 }
+		    	 res+="</ul>";
+		    	 $(res).appendTo($("#content"));
+			})
+		});
+	});
+</script>
+</head>
+<body>
+	
+	<input type="button" value="getScript"/><br/>
+	<input type="button" value="getJSON"/><br/>
+	<input type="button" value="getWebJSON"/><br/>
+	<div id="content"></div>
+</body>
+</html>

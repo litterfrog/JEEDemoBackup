@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>test load</title>
+<script type="text/javascript" src="scripts/jquery-3.0.0.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$("input:eq(0)").click(function(){
+			//默认get请求
+			$("#content").load("LoadServlet #myli");
+		});
+		$("input:eq(1)").click(function(){
+			//load加了第二个参数就会是post请求,第三个参数function有三个形参最后一个是异步处理对象里边有很多内容
+			$("#content").load("LoadServlet",{'username':'fxp','age':30},function(responseText,textStatus,XMLHttpRequest){
+				alert(textStatus+" "+XMLHttpRequest.responseText);
+				
+			});
+		});
+	});
+</script>
+</head>
+<body>
+	<input type="button" value="loadGet"/>
+	<input type="button" value="loadPost"/>
+	<div id="content"></div>
+</body>
+</html>

@@ -1,0 +1,12 @@
+<taglib>
+	<tlib-version>1.0</tlib-version>
+	<jsp-version>1.2</jsp-version>
+	<uri>http://com.fxp.jee.functions/myfunc</uri>
+	<function>
+		<name>hi</name>
+		<function-class>com.fxp.jee.function.MyFunction</function-class>
+		<function-signature>
+			java.lang.String hi(java.lang.String)
+		</function-signature>
+	</function>
+</taglib>

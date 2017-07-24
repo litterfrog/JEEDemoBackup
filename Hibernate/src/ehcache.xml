@@ -1,0 +1,49 @@
+<ehcache>
+
+    
+    <diskStore path="F:/hibernate/secondCacheTmp"/>
+
+
+    
+    <defaultCache
+        maxElementsInMemory="10000"
+        eternal="false"
+        timeToIdleSeconds="120"
+        timeToLiveSeconds="120"
+        overflowToDisk="true"
+        />
+
+    
+
+    
+    <cache name="com.fxp.basic.pojo.Student"
+        maxElementsInMemory="100"
+        eternal="false"
+        timeToIdleSeconds="100"
+        timeToLiveSeconds="600"
+        overflowToDisk="true"
+        />
+    <cache name="com.fxp.association.one2many.pojo.Order"
+        maxElementsInMemory="100"
+        eternal="false"
+        timeToIdleSeconds="100"
+        timeToLiveSeconds="600"
+        overflowToDisk="true"
+        />
+   	<cache name="com.fxp.association.one2many.pojo.Order.orderlines"
+        maxElementsInMemory="100"
+        eternal="false"
+        timeToIdleSeconds="100"
+        timeToLiveSeconds="600"
+        overflowToDisk="true"
+        />
+    <cache name="com.fxp.association.one2many.pojo.OrderLine"
+        maxElementsInMemory="1000"
+        eternal="false"
+        timeToIdleSeconds="100"
+        timeToLiveSeconds="600"
+        overflowToDisk="true"
+        />   
+
+
+</ehcache>

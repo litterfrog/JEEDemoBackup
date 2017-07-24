@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>test get xml</title>
+<script type="text/javascript" src="scripts/jquery-3.0.0.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$("input:eq(2)").click(function(){
+			$.get("GetXMLServlet",
+					{'username':$("#username").val(),
+				     'password':$("#password").val()},
+					function(data,textStatus){
+				    	 var username=$(data).find("name").text();
+				    	 var password=$(data).find("password").text();
+				    	 $("#content").html("<p>名字:"+username+",密码:"+password+"</p>");
+				    	 alert(textStatus);
+					},"xml");//不写第四个参数默认为html
+		});
+
+	});
+</script>
+</head>
+<body>
+	<input type="text" name="username" id="username"/>
+	<input type="password" name="password" id="password"/>
+	
+	<input type="button" value="login"/>
+	<div id="content"></div>
+</body>
+</html>

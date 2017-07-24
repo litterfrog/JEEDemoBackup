@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.fxp.association.one2many.pojo" schema="C##FUXP">
+    <class name="Order" table="T_ORDER">
+    	<cache usage="read-only"/>
+        <id name="id" type="long" column="ID">
+			<generator class="sequence">
+				<param name="sequence">T_ORDER_SEQ</param>
+			</generator>
+        </id>
+        
+        <property name="orderedDate" column="ORDERED_DATE" type="date"/>
+        <property name="shippedDate" column="SHIPPED_DATE" type="date"/>
+        <property name="total" column="TOTAL" type="double"/>
+        
+        <set name="orderlines" cascade="all" inverse="true">
+        	<cache usage="read-only"/>
+        	<key column="ORDER_ID"/>
+        	<one-to-many class="OrderLine"/>
+        </set>
+    </class>
+
+</hibernate-mapping>

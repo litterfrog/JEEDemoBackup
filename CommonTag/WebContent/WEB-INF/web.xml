@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
+  <display-name>CommonTag</display-name>
+  <welcome-file-list>
+    <welcome-file>index.jsp</welcome-file>
+  </welcome-file-list>
+  <jsp-config>
+  	<jsp-property-group>
+  		<url-pattern>*.jsp</url-pattern>
+  		<page-encoding>UTF-8</page-encoding>
+  		<trim-directive-whitespaces>true</trim-directive-whitespaces>  		
+  	</jsp-property-group>
+  </jsp-config>
+  <!--  -->
+  <error-page>
+  	<error-code>404</error-code>
+  	<location>/index_err.jsp</location>
+  </error-page>
+  <error-page>
+  	<exception-type>java.lang.Exception</exception-type>
+  	<location>/index_err.jsp</location>
+  </error-page>
+  
+  <servlet>
+  	<servlet-name>ImplicitObjects</servlet-name>
+  	<jsp-file>/implicitObjects.jsp</jsp-file>
+  	<init-param>
+  		<param-name>test</param-name>
+  		<param-value>JSP Config</param-value>
+  	</init-param>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>ImplicitObjects</servlet-name>
+  	<url-pattern>/implicitObjects</url-pattern>
+  </servlet-mapping>
+</web-app>

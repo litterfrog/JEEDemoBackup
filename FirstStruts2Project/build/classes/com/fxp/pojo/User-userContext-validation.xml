@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE validators PUBLIC
+        "-//Apache Struts//XWork Validator 1.0.2//EN"
+        "http://struts.apache.org/dtds/xwork-validator-1.0.2.dtd">
+
+<validators>
+	<!-- 校验name属性 -->
+    <field name="name">
+    	<!-- 必填 ,短路 -->
+        <field-validator type="requiredstring" short-circuit="true">
+        	<param name="trim">true</param>
+            <message>名字必填</message>
+        </field-validator>
+        <!-- 匹配正则表达式 -->
+        <field-validator type="regex">
+        	<param name="regexExpression"><![CDATA[(\w{4,32})]]></param>
+        	<message>name can only be letters and numbers,length is between 4 and 32</message>
+        </field-validator>
+    </field>
+	<!-- 校验password属性 -->
+    <field name="password">
+    	<!-- 必填 -->
+        <field-validator type="requiredstring">
+        	<param name="trim">true</param>
+            <message>密码必填</message>
+        </field-validator>
+        <!-- 匹配正则表达式 -->
+        <field-validator type="regex">
+        	<param name="expression"><![CDATA[(\w{4,32})]]></param>
+        	<message>password can only be letters and numbers,length is between 4 and 32</message>
+        </field-validator>
+    </field>
+    <!-- 校验age属性 -->
+    <field name="age">
+    	
+        <field-validator type="int">
+        	<param name="min">1</param>
+        	<param name="max">120</param>
+            <message>age must be between ${min} and ${max}</message>
+        </field-validator>
+    </field>
+    <!-- 校验registerDate属性 -->
+    <field name="registerDate">
+    	
+        <field-validator type="date">
+        	<param name="min">1900-01-01</param>
+        	<param name="max">2017-01-01</param>
+            <message>registerDate must be between ${min} and ${max}</message>
+        </field-validator>
+    </field>
+</validators>

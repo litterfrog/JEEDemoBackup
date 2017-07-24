@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
+<title>主页</title>
+</head>
+<body>
+	<a href="/ProcessingForms/processing">Servlet处理超链接，绝对路径</a><br/>
+	<a href="processing?name=付新鹏&age=20">Servlet处理超链接，相对路径</a>
+	<hr/>
+	<p>普通表单</p>
+	<form action="processing" method="post">
+		名称：<input type="text" name="name"/><br/><br/>
+		年龄：<input type="text" name="age"/><br/><br/>
+		<input type="reset" value="取消提交"/>
+		<input type="submit" value="提交"/>
+	</form>
+	<hr/>
+	<p>文件上传表单</p>
+	<form action="upload" method="post" enctype="multipart/form-data">
+		名称：<input type="text" name="name"/><br/><br/>
+		年龄：<input type="text" name="age"/><br/><br/>
+		上传：<input type="file" name="file"/><br/><br/>
+		<input type="reset" value="取消提交"/>
+		<input type="submit" value="提交"/>
+	</form>
+	<hr/>
+	<a href="reqinfo">显示Request信息</a>
+</body>
+</html>

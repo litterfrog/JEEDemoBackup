@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+        "http://struts.apache.org/dtds/struts-2.5.dtd">
+
+
+<struts>
+
+    <package name="FirstStruts2Project" extends="struts-default">
+    	<interceptors>
+    		<interceptor name="authority" class="com.fxp.interceptor.AuthorityInterceptor"/>
+    	</interceptors>
+    	<global-results>
+    		<result name="login">/login.jsp</result>
+    	</global-results>
+        <action name="login" class="com.fxp.action.LoginAction">
+        	<result name="input">/login.jsp</result>
+          	<result name="error">/login.jsp</result> 	
+          	<result name="success">/WEB-INF/content/welcome.jsp</result>
+        </action>
+        
+        <action name="register" class="com.fxp.action.RegisterAction">
+        	<result name="input">/register.jsp</result>
+          	<result name="error">/register.jsp</result> 	
+          	<result name="success">/WEB-INF/content/welcome.jsp</result>
+        </action>
+        
+        <action name="loginCustomCoverter" class="com.fxp.action.LoginActionCustomCoverter">
+        	<result name="input">/login.jsp</result>
+          	<result name="error">/login.jsp</result> 	
+          	<result name="success">/WEB-INF/content/welcome.jsp</result>
+        </action>       
+        
+        <action name="tagTest" class="com.fxp.action.TagAction">
+        	<result>/WEB-INF/content/success.jsp</result>
+        </action>
+        <action name="process" class="com.fxp.action.TagAction" method="process">
+        	<result>/WEB-INF/content/success.jsp</result>
+        </action>      	
+        
+        <action name="listBook" class="com.fxp.action.ListBookAction">
+        	<result name="success">/WEB-INF/content/listBook.jsp</result>
+        	<interceptor-ref name="authority"/>
+        	<interceptor-ref name="defaultStack"/>
+        </action>
+        
+        <action name="*">
+          <result>/WEB-INF/content/{1}.jsp</result>
+        </action>
+    </package>
+</struts>

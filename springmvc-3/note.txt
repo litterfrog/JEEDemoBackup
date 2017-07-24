@@ -1,0 +1,4 @@
+要实现实时通讯需要的组件
+1.spring websocket(基于stomp)
+2.stomp.js readme:http://www.bootcdn.cn/stomp.js/readme/
+3.sockjs-0.3.4.js readme:http://www.bootcdn.cn/sockjs-client/readme/

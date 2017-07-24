@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.fxp.collection.map" schema="C##FUXP">
+    <class name="ItemsMap" table="ITEMS_MAP">
+        <id name="id" type="integer" column="ID">
+			<generator class="increment"/>
+        </id>
+        <property name="name" column="NAME" type="string"/>
+		
+		<map name="images" table="IMAGES_MAP">			
+			<key column="ITEMS_ID"/>
+			<map-key type="string" column="IMAGE_NAME"/>
+			<element column="FILENAME" type="string" not-null="true"/>
+		</map>
+    </class>
+
+</hibernate-mapping>

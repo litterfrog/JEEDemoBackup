@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.fxp.association.one2one.pojo" schema="C##FUXP">
+    <class name="Passport" table="T_PASSPORT_PK">
+        <id name="id" type="long" column="ID">
+			<generator class="foreign">
+				<param name="property">person</param>
+			</generator>
+        </id>
+        
+        <property name="bh" type="string" column="BH"/>
+
+		<one-to-one name="person" class="Person"></one-to-one>
+    </class>
+
+</hibernate-mapping>

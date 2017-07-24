@@ -1,0 +1,26 @@
+1.加入Spring
+
+1).加入jar包
+2).配置web.xml文件
+3).加入Spring的配置文件.
+
+2.加入Hibernate
+
+1).同时建立持久化类，和其对应的.hbm.xml文件，生成对应的数据表
+2).Spring整合Hibernate
+
+	1>.加入jar
+	2>.在类路径下加入hibernate.cfg.xml文件，在其中配置hibernate的基本属性
+	3>.建立持久化类，和其对应的.hbm.xml文件(实际上用的是注解)
+	4>.和Spring进行整合
+		i.加入c3p0和数据库驱动
+		ii.在spring的配置文件中配置：数据源，SessionFactory，声明式事务
+	5>.启动项目，会看到生成对应的数据表
+3.整合SpringMVC。
+1).jar包要有
+2).在web.xml中添加Servlet配置。
+3).加入SpringMVC的配置文件。
+	注意：为了不使两个bean容器重复加载bean实例，规定：web层的bean在springmvc.xml中配置，model层等其他bean在applicationContext.xml中配置。（使用注解是不必在意这个细节，用<context:component-scan/>来规定。）
+4.完成注册功能，跑通项目。
+
+更换数据库：配置db.properties;hibernate.cfg.xml;pom.xml

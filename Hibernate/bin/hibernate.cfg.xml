@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+
+    <session-factory>
+        <!-- Database connection settings -->
+        <property name="connection.driver_class">oracle.jdbc.driver.OracleDriver</property>
+        <property name="connection.url">jdbc:oracle:thin:@localhost:1521:FXPORACLE</property>
+        <property name="connection.username">c##fuxp</property>
+        <property name="connection.password">fuxp</property>
+        
+        <!-- 一次批处理数量 -->
+        <property name="hibernate.jdbc.batch_size">100</property>
+        <!-- 默认连接池大小 -->
+        <property name="connection.pool_size">5</property>
+        
+        <!-- 配置二级缓存的实现CacheProvider -->
+        <!-- Hibernate3.x中使用 -->
+        <!-- <property name="cache.provider_class">org.hibernate.cache.EhCacheProvider</property> -->
+        <!-- Hibernate4.x中使用 -->
+        <property name="hibernate.cache.region.factory_class">org.hibernate.cache.ehcache.EhCacheRegionFactory</property>
+       	<!-- 开启二级缓存(Hibernate4.x中默认开启，3.x默认关闭) -->
+        <property name="hibernate.cache.use_second_level_cache">true</property>
+        <!-- 开启查询缓存功能(针对query,critera) ，在代码里每次查询还要setCacheable-->
+        <property name="hibernate.cache.use_query_cache">true</property>
+        
+        <!-- java:comp/env/是jee前缀。jdbc/test是绑定所配置数据源的jndi名字，如果配置了这个数据源，数据库连接的配置和连接池的配置都不需要了，因为在tomcat中都有 -->
+        <!-- <property name="hibernate.connection.datasource">java:comp/env/jdbc/test</property> -->
+        
+        <!-- C3P0 Connection Pool 可以在开发包project/etc/hibernate.properties中找到 -->
+        <!-- 当配置了c3p0连接池后会自动关闭Hibernate内置的默认连接池，注意要导入c3p0包 -->
+        <!-- 最大连接数 -->
+        <!-- <property name="hibernate.c3p0.max_size">20</property> -->
+        <!-- 最小连接数 -->
+        <!-- <property name="hibernate.c3p0.min_size">5</property> -->
+        <!-- 连接的超时时间，超时抛异常，单位:毫秒 -->
+        <!-- <property name="hibernate.c3p0.timeout">5000</property> -->
+        <!-- <property name="hibernate.c3p0.max_statements">100</property> -->
+        <!-- 每隔指定时间检查连接池中的空闲连接，时间单位：秒 -->
+        <!-- <property name="hibernate.c3p0.idle_test_period">150</property> -->
+        <!-- 当连接池中的连接全部占用，c3p0会再和数据库建立的连接数 -->
+        <!-- <property name="hibernate.c3p0.acquire_increment">2</property> -->
+        <!-- 每次是否都验证连接是否可用 -->
+        <!-- <property name="hibernate.c3p0.validate">false</property> -->
+
+
+		<!-- Enable Hibernate's automatic session context management -->
+		<property name="current_session_context_class">thread</property>
+
+        <!-- SQL dialect -->
+        <property name="dialect">org.hibernate.dialect.Oracle10gDialect</property>
+
+        <!-- Echo all executed SQL to stdout -->
+        <property name="show_sql">true</property>
+        
+		<mapping resource="com/fxp/basic/pojo/Student.hbm.xml"/>
+		<mapping resource="com/fxp/basic/pojo/Book.hbm.xml"/>
+		<mapping resource="com/fxp/association/one2one/pojo/Person_PK.hbm.xml"/>
+		<mapping resource="com/fxp/association/one2one/pojo/Passport_PK.hbm.xml"/>
+		
+		<mapping resource="com/fxp/association/one2many/pojo/Order.hbm.xml"/>
+		<mapping resource="com/fxp/association/one2many/pojo/OrderLine.hbm.xml"/>
+		
+		<mapping resource="com/fxp/association/many2many/pojo/Engineer.hbm.xml"/>
+		<mapping resource="com/fxp/association/many2many/pojo/Technology.hbm.xml"/>
+		
+		<!-- <mapping resource="com/fxp/inheritance/pojo/hierarchy.hbm.xml"/> -->
+		<mapping resource="com/fxp/inheritance/pojo/join.hbm.xml"/>
+		<!-- <mapping resource="com/fxp/inheritance/pojo/concrete.hbm.xml"/> -->
+		
+		<mapping resource="com/fxp/component/pojo/Customer.hbm.xml"/>
+		
+		<mapping resource="com/fxp/collection/set/ItemsSet.hbm.xml"/>
+		
+		<mapping resource="com/fxp/collection/list/ItemsList.hbm.xml"/>
+		
+		<mapping resource="com/fxp/collection/bag/ItemsBag.hbm.xml"/>
+		
+		<mapping resource="com/fxp/collection/map/ItemsMap.hbm.xml"/>
+		
+		<mapping resource="com/fxp/transaction/pojo/Account.hbm.xml"/>
+		<mapping resource="com/fxp/transaction/pojo/AccountVersion.hbm.xml"/>
+		<mapping resource="com/fxp/transaction/pojo/AccountTimestamp.hbm.xml"/>
+		
+		<!-- 更多是在映射文件里边设置 -->
+        <!-- <class-cache usage="read-only" class="com.fxp.basic.pojo.Student"/> -->
+    </session-factory>
+
+</hibernate-configuration>

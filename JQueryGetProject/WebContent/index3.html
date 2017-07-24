@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>test get json</title>
+<script type="text/javascript" src="scripts/jquery-3.0.0.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$("input:eq(0)").click(function(){
+			$.get("GetJSONServlet",
+					function(data,textStatus){
+				    	 var students=data.students;
+				    	 var res="<ul>\n";
+				    	 for(var i=0;i<students.length;i++){
+				    		 var student=students[i];
+				    		 res+="<li>"+student.name+"--"+student.age+"</li><br/>";
+				    	 }
+				    	 res+="</ul>";
+				    	 $(res).appendTo($("#content"));
+				    	 alert(textStatus);
+					},"json");//不写第四个参数默认为html
+		});
+
+	});
+</script>
+</head>
+<body>
+	
+	<input type="button" value="getJSON"/>
+	<div id="content"></div>
+</body>
+</html>

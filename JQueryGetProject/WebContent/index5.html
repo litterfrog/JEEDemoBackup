@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>test get json</title>
+<script type="text/javascript" src="scripts/jquery-3.0.0.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$("input:eq(0)").click(function(){
+		$.ajax({ 
+			url:"GetJSONServlet",
+			type:"get",
+			dataType:"json",
+			success:function(data){
+		    	 var students=data.students;
+		    	 var res="<ul>\n";
+		    	 for(var i=0;i<students.length;i++){
+		    		 var student=students[i];
+		    		 res+="<li>"+student.name+"--"+student.age+"</li><br/>";
+		    	 }
+		    	 res+="</ul>";
+		    	 $(res).appendTo($("#content"));
+			},
+			error:function(data){
+				alert("error:failed!")
+			},
+			complete:function(XMLHttpRequest,textStatus){
+				alert("complete:"+XMLHttpRequest.status);
+			}
+		});
+		});
+	});
+</script>
+</head>
+<body>
+	
+	<input type="button" value="$.ajax"/><br/>
+	<div id="content"></div>
+</body>
+</html>

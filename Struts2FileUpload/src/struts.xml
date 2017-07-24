@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+        "http://struts.apache.org/dtds/struts-2.5.dtd">
+
+
+<struts>
+
+    <package name="Struts2fileUploadtest" extends="struts-default">
+    	<interceptors>
+    		<interceptor name="authority" class="com.fxp.interceptor.AuthorityInterceptor"/>
+    	</interceptors>
+    	<global-results>
+    		<result name="login">/login.jsp</result>
+    	</global-results>
+    	<!-- 配置文件上传的Action -->
+        <action name="uploadfile" class="com.fxp.action.UploadAction">
+        	<!-- 配置fileUpload的拦截器 -->
+        	<interceptor-ref name="fileUpload">
+        		<!-- 配置允许上传的文件类型 -->
+        		<param name="allowedTypes">image/bmp,image/png,image/gif,text/plain</param>
+        		<param name="maximumSize">2000000</param>
+        	</interceptor-ref>
+        	<interceptor-ref name="defaultStack"/>
+        	<!-- 动态设置Action的属性值 -->
+        	<param name="savePath">/fileupload</param>
+          	<result name="input">/upload.jsp</result> 	
+          	<result>/WEB-INF/content/uploadOk.jsp</result>
+        </action>
+		<action name="downloadfile" class="com.fxp.action.DownloadAction">
+			<!-- 配置结果类型为stream的结果 -->
+			<result name="success" type="stream">
+				<!-- 指定下载文件的文件类型 -->
+				<param name="contentType">${contentType}</param>
+				<!-- 指定由getTargetFile()方法返回被下载文件的InputStream -->
+				<param name="inputName">targetFile</param>
+				<!-- 指定下载文件的文件名 -->
+				<param name="contentDisposition">filename="${downloadFileName}"</param>
+				<!-- 指定下载文件的缓冲大小 -->
+				<param name="bufferSize">4096</param>
+			</result>
+		</action>
+        
+        <action name="*">
+          <result>/WEB-INF/content/{1}.jsp</result>
+        </action>
+    </package>
+</struts>

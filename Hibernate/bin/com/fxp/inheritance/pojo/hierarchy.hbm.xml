@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.fxp.inheritance.pojo" schema="C##FUXP">
+    <class name="BillingDetails" table="T_HIERARCHY" discriminator-value="BD">
+        <id name="id" type="long" column="ID">
+			<generator class="sequence">
+				<param name="sequence">T_BILLING_SEQ</param>
+			</generator>
+        </id>
+        <discriminator column="ACCOUNT_TYPE" type="string"/>
+        <property name="owner" column="OWNER" type="string"/>
+		<property name="code" column="CODE" type="string"/>
+		<property name="created" column="CREATED" type="date"/>
+		
+		<subclass name="CreditCard" discriminator-value="CC">
+			<property name="type" column="CREDIT_CARD_TYPE" type="string"/>
+			<property name="expMonth" column="EXPIRED_MONTH" type="string"/>
+			<property name="expYear" column="EXPIRED_YEAR" type="string"/>
+		</subclass>
+		<subclass name="BankAccount" discriminator-value="BA">
+			<property name="bankName" column="BANKNAME" type="string"/>
+			<property name="bankSwift" column="BANKSWIFT" type="string"/>
+		</subclass>
+    </class>
+
+</hibernate-mapping>

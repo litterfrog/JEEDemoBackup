@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.fxp.basic.pojo" schema="C##FUXP">
+    <class name="Student" table="STUDENT">
+    	<!-- 设置并发访问策略（设置后查询到的Student对象才会放置到二级缓存中） -->
+    	<cache usage="read-write"/>
+        <id name="id" type="long" column="ID">
+<!--             <generator class="sequence">
+            	<param name="sequence">STUDENT_SEQ</param>
+            </generator> -->
+            <!-- <generator class="increment"></generator> -->
+           	<!-- <generator class="identity"></generator> oracle不支持自增长-->
+<!--            	<generator class="hilo">
+           		<param name="table">hi_value</param>
+           		<param name="column">next_hi</param>
+           		<param name="max_lo">3</param>
+           	</generator> -->
+           	<generator class="native"></generator>
+        </id>
+        <property name="name" type="string" column="NAME"/>
+        <property name="address" type="string" column="ADDRESS"/>
+        <property name="gender" type="string" column="GENDER"/>
+        <property name="age" type="int" column="AGE"/>
+    </class>
+	<query name="findStudentById">
+		<![CDATA[from Student where id=?1]]>
+	</query>
+</hibernate-mapping>

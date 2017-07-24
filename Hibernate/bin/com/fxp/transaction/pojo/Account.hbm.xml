@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.fxp.transaction.pojo" schema="C##FUXP">
+    <class name="Account" table="ACCOUNT">
+    	<!-- 设置并发访问策略（设置后查询到的Student对象才会放置到二级缓存中） -->
+    	<cache usage="read-write"/>
+        <id name="id" type="long" column="ID">
+           	<generator class="increment"></generator>
+        </id>
+        <property name="name" type="string" column="NAME"/>
+        <property name="code" type="long" column="CODE"/>
+        <property name="balance" type="double" column="BALANCE"/>
+    </class>
+
+</hibernate-mapping>

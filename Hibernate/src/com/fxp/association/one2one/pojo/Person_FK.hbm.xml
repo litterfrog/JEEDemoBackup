@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.fxp.association.one2one.pojo" schema="C##FUXP">
+    <class name="Person" table="T_PERSON_FK">
+        <id name="id" type="long" column="ID">
+			<generator class="sequence">
+				<param name="sequence">T_PERSON_FK_SEQ</param>
+			</generator>
+        </id>
+        
+        <property name="name" type="string" column="NAME"/>
+        <property name="gender" type="string" column="GENDER"/>
+        <property name="age" type="integer" column="AGE"/>
+        
+        <one-to-one name="passport" class="Passport"
+        	property-ref="person" cascade="all"/>
+    </class>
+
+</hibernate-mapping>

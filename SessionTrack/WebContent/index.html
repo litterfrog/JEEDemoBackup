@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>首页</title>
+<script type="text/javascript">
+	function encodeURL(url,self) {
+		var sid=document.location.href;
+		sid=sid.match(/;jsessionid=.+/);
+		if(null!=sid){
+			url+=sid;
+		}		
+		self.href=url;
+		self.submit();
+	}
+</script>
+</head>
+<body>
+	<p>
+		<a href="pages/login.html">登录</a><br/><br/>
+		<a href="javascript:void(0)" onclick="encodeURL('control/test',this)">访问TestServlet(用户登录后才能访问)</a>
+		
+	</p>
+	<p>
+		<a href="save">保存Cookie</a><br/><br/>
+		<a href="read">读取Cookie</a><br/><br/>
+		
+	</p>
+	<a href="remove">移除Cookie</a>
+</body>
+</html>

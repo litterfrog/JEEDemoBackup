@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.fxp.association.one2many.pojo" schema="C##FUXP">
+    <class name="OrderLine" table="T_ORDERLINE">
+    	<cache usage="read-only"/>
+        <id name="id" type="long" column="ID">
+			<generator class="sequence">
+				<param name="sequence">T_ORDERLINE_SEQ</param>
+			</generator>
+        </id>
+        
+        <property name="price" column="PRICE" type="double"/>
+        <property name="quantity" column="QUANTITY" type="long"/>
+        <property name="product" column="PRODUCT" type="string"/>
+        
+        <many-to-one name="order" column="ORDER_ID"/>
+    </class>
+
+</hibernate-mapping>
